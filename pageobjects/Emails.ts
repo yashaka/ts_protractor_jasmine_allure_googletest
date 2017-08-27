@@ -1,6 +1,7 @@
 import {element, by, $, ElementFinder, ElementArrayFinder, browser} from 'protractor';
 import { By } from 'selenium-webdriver';
 import { Waiter as WaitFor } from '../core/Waiter';
+declare var allure : any;
 
 export class Emails {
 
@@ -20,8 +21,9 @@ export class Emails {
     }
 
     public async shouldHaveTopics(...texts: string[]) : Promise<void> {
-        await WaitFor.collectionSize(this.topics, texts.length);
-        // await browser.sleep(2000);
+        allure.createStep( 'should have topics "' + texts + '"', ()=>{} )();
+        // await WaitFor.collectionSize(this.topics, texts.length);
+        await browser.sleep(2000);
         expect<any>(await this.topics.getText()).toEqual(texts);
     }
 

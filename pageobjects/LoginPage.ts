@@ -7,20 +7,14 @@ export class LoginPage {
     private passwordElement : ElementFinder = $("#password input");
 
     async open() {
-        // await browser.get('http://gmail.com');
-        // allure.createStep('Open gmail page', async () => {
-        //     await browser.get('http://gmail.com');
-        // });
-        await LoginPage.dostep('asd', async () => {
-            await browser.get("http://google.com/ncr");
-        });
-    }
-
-    static async dostep(description : string, stepmethod :  () => void) {
-        allure.createStep(description, stepmethod);
+        allure.createStep( 'Open gmail page', ()=>{} )();
+        
+        await browser.get('http://gmail.com');
     }
 
     async loginAs(email: string, password: string) {
+        allure.createStep('Login as "' + email + '" - "' + password + '"', ()=>{} )();
+
         await WaitFor.visibilityOf(this.emailElement);
         await this.emailElement.clear();
         await this.emailElement.sendKeys(email + Key.ENTER);

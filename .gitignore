@@ -1,3 +1,5 @@
 node_modules/
 ConvertedJSFiles/
+allure-results/
+target/
 package-lock.json

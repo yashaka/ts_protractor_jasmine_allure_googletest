@@ -1,7 +1,9 @@
 import { ProtractorBrowser, Config } from 'protractor';
+declare var allure : any;
+
 export let config: Config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  //SELENIUM_PROMISE_MANAGER: false,
+  SELENIUM_PROMISE_MANAGER: false,
   capabilities: {
     'browserName': 'chrome'
     },
@@ -24,5 +26,12 @@ export let config: Config = {
           resultsDir: '../target/allure-results'
       }
   }));
+  jasmine.getEnv().afterEach(async function(){
+    await browser.takeScreenshot().then(function (png) {
+      allure.createAttachment('Screenshot', function () {
+        return new Buffer(png, 'base64')
+      }, 'image/png')();
+    })
+  });
  }
 }
