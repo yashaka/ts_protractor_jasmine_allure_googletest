@@ -1,12 +1,13 @@
 {
     "compilerOptions": {
-      "target": "es2015",
+      "target": "es2017",
       "module": "commonjs",
       "moduleResolution": "node",
       "sourceMap": false,
       "declaration": false,
       "removeComments": false,
       "noImplicitAny": false,
+      "experimentalDecorators": true,
       "outDir": "ConvertedJSFiles",
       "types": ["jasmine", "node"]
     },

@@ -1,16 +1,17 @@
-import {element, by, $, ElementFinder, ElementArrayFinder, browser} from 'protractor';
+import { CustomBy as by } from './../core/CustomBy';
+import { $, ElementFinder, ElementArrayFinder, browser } from 'protractor';
 import { By } from 'selenium-webdriver';
 import { Waiter as WaitFor } from '../core/Waiter';
-declare var allure : any;
+import { Allure } from "../core/Allure";
 
 export class Emails {
 
-    private mailsContainers : ElementArrayFinder;
-    private authors : ElementArrayFinder;
-    private topics : ElementArrayFinder;
-    private messages : ElementArrayFinder;
+    private mailsContainers: ElementArrayFinder;
+    private authors: ElementArrayFinder;
+    private topics: ElementArrayFinder;
+    private messages: ElementArrayFinder;
 
-    public static async instance (mailsContainerLocator : By) : Promise<Emails> {
+    public static async instance(mailsContainerLocator: By): Promise<Emails> {
         let emails = new Emails();
         emails.mailsContainers = $("[role='main']").all(mailsContainerLocator).filter(element => element.isDisplayed());
         emails.topics = emails.mailsContainers.$$(".y6 span[id*=':']").filter(element => element.isDisplayed());
@@ -20,8 +21,8 @@ export class Emails {
         return emails;
     }
 
-    public async shouldHaveTopics(...texts: string[]) : Promise<void> {
-        allure.createStep( 'should have topics "' + texts + '"', ()=>{} )();
+    @Allure.Step()
+    public async shouldHaveTopics(...texts: string[]): Promise<void> {
         // await WaitFor.collectionSize(this.topics, texts.length);
         await browser.sleep(2000);
         expect<any>(await this.topics.getText()).toEqual(texts);

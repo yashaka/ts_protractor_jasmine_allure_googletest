@@ -26,12 +26,5 @@ export let config: Config = {
           resultsDir: '../target/allure-results'
       }
   }));
-  jasmine.getEnv().afterEach(async function(){
-    await browser.takeScreenshot().then(function (png) {
-      allure.createAttachment('Screenshot', function () {
-        return new Buffer(png, 'base64')
-      }, 'image/png')();
-    })
-  });
  }
 }
