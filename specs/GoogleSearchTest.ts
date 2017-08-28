@@ -1,14 +1,14 @@
 import { browser } from 'protractor';
 import { Application } from './../core/Application';
 import { SearchPage } from './../pageobjects/SearchPage';
-import { Allure } from "../core/util/Allure";
+import { attachScreenshot } from "../core/util/Allure";
 
 describe('google search tests', function () {
   
   const app: Application = new Application();
 
   afterEach(async () => {
-    await Allure.attachScreenshot();
+    await attachScreenshot();
   });
 
   it('should search for Selenium', async () => {
