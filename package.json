@@ -13,8 +13,9 @@
     "@types/node": "^6.0.62"
   },
   "scripts": {
-    "pretest": "npm run tsc",
+    "pretest": "npm run tsc && npm run cleanXml",
     "test": "protractor ConvertedJSFiles/config.js",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "cleanXml": "mvn clean"
   }
 }
